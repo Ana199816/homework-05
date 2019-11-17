@@ -1,95 +1,79 @@
-$(document).ready(function() {
-    console.log( "ready!" )
+$("#currentDay").text(moment().format("dddd, MMMM Do"));
+
+// hour variables
+
+var hour = ["9", "10", "11", "12", "13", "14", "15", "16", "17"]
+
+// add AM/PM to times
+
+// for each function to loop and set elements/classes/attributes.
+hour.forEach(function(time){
+    var text = $("<textarea>").attr("dataStorage", time);
+    var btn = $("<button>").addClass("saveBtn fas fa-save");
+    var row = $("<div>").addClass("row");
+    var hours = $("<div>").addClass("hour");
+    // parses hour array 
+    let any = parseInt(time);
     
-    var time = moment().format("dddd, MMMM Do YYYY");
+    // append each variable
 
-    var appointments = ["9am", "10am", "11am", "12pm", "1pm", "2pm","3pm","4pm","5pm"];
+      row.append(hours, text, btn);
 
-    var textBlockEl = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    // appending the row to the provided container class
 
-    var btnEl = ["b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8", "b9"];
+    $(".container").append(row);
 
-    var input = [];
+    // checking if time is greater or less than 12 and setting AM/PM
+
+    if(any < 12){
+        hours.text(time + "am");
     
-    var calender = $("<div>");
-    $("#planner").append(calender);
-    
-      
-    function getTime(){
-        console.log(time);
+    }else if(any > 12){
+        hours.text(time - 12 + "pm");
+
+    }else{
         
-        var date=$("<div>");
-        date.append("#currentDay");
-        $("#currentDay").text(time);
-    }
-    
-    function timeBlocks(){
-        for (var i = 0; i < appointments.length; i++) {
-            
-            var timeBlock = $("<div>");         
-            
-            timeBlock.addClass("row hour");
-            
-            timeBlock.attr("name", appointments[i]);
-            
-            
-            timeBlock.text(appointments[i]);
+    hours.text(time + "pm");
 
-            
-            $("#hr").append(timeBlock);
-            
-        }
-    }
-    function textBlocks(){
-        for (var i = 0; i < textBlockEl.length; i++) {
-            
-            var textBlock = $("<input>");
-            
-            // var textId = $("id", appointment[i]);
-            
-            textBlock.addClass("row textarea");
-            
-            textBlock.attr("data-index",i);   
-            
-            textBlock.text(input,"");
-                      
-            $("#text").append(textBlock);
-
-            // need to add input from textBlock into localStorage.
-            $("#saveButton").on("click", function(){
-                localStorage.setItem("input.text", JSON.parse("input"));
-        
-                
-            });
-        }
-            
     }
 
-    
-    function buttonBlocks(){
-        for (var i = 0; i < btnEl.length; i++) {
-         
-            var button = $("<button>");
-
-            button.addClass("row saveBtn");
-
-            button.attr("id", btnEl[i]);   
-            
-            button.text("Save");
-
-            $("#saveButton").append(button);
-        }
-        
-    }
-
-
-   
-    
-    console.log(appointments);
-    console.log(localStorage);
-    console.log
-    timeBlocks();
-    textBlocks();
-    buttonBlocks();
-    getTime();
 });
+
+    // will not perform any functions until entire page is loaded.
+
+$(document).ready( () => {
+    
+    // button to save to local storage on click - .prev selects the previous index of the button which is the textarea in this case.
+
+    $(".saveBtn").on("click", function(){
+        localStorage.setItem($(this).prev("textarea").attr("dataStorage"),$(this).prev("textarea").val());
+    });
+
+    // "*" means grab all within the data attr and return from local storage.
+
+    $("*[dataStorage]").each(function(){
+        $(this).val(localStorage.getItem($(this).attr("dataStorage"))
+    )});
+
+});
+
+    var newDate = new Date()
+    var newHour = newDate.getHours();
+    console.log(newHour);
+
+    $("*[dataStorage").each(function(){
+        if (parseInt($(this).attr("dataStorage")) === newHour){
+
+            $(this).addClass("present").removeClass("past future");
+
+        }else if(parseInt($(this).attr("dataStorage")) < newHour){
+            $(this).addClass("past").removeClass("present future");
+
+        }else{
+            $(this).addClass("future").removeClass("past present");
+        };
+        
+    });
+
+    console.log(parseInt("dataStorage"));
+    console.log(newHour);
