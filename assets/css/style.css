@@ -1,0 +1,73 @@
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+
+}
+
+.row {
+    margin-top: -6px;
+}
+
+input {
+    font-size:1.6em;
+}
+#planner{
+    background-color:whitesmoke;
+    /* width: 700px; */
+}
+
+.leftCol{
+    width: 75px;
+    height: 40px;
+    /* border-top-style:dotted ; */
+    border-bottom-style:dotted ;
+    padding: 2px;
+    margin: 2px;
+    float:left;
+}
+.savebtn {
+    width: 50px;
+    height: 40px;
+    border: 2px solid black;
+    /* float: right; */
+    background-color: rgb(18, 140, 240);
+    border-radius: 0 15px 15px 0;
+    margin: 2px 0 0 -4px;
+}
+.hours{
+    width: 75%;
+    height: 40px;
+    border: 2px solid black;
+    padding: 2px;
+    margin: 2px;
+    /* float:left; */
+}
+.hour-button{
+    color:darkmagenta;
+}
+
+.hour-button-color{
+    color: darkcyan;
+}
+
+.past {
+    background-color:rgb(161, 167, 170);
+    color: black;
+}
+.present {
+    background-color:rgb(243, 11, 11);
+    color: white;
+}
+
+.future {
+    background-color:rgb(19, 212, 84);
+    color: black;
+}
+
+
+
+#display {
+    margin-top: 70px;
+    height:500px;
+    width:700px;
+    margin-left: 50px;
+}
