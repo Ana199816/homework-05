@@ -24,3 +24,4 @@ style.css (basic modifications on top of Bootstrap)
 # screenshot
 <img src="assets/img/work.day.png">
 <img src="assets/img/work.day1.png">
+<img src="assets/img/validator-workday.png">
