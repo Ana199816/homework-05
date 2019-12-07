@@ -13,13 +13,7 @@ Github Pages link: (https://github.com/Ana199816/homework-05)
 
 All website assets are contained within the repo (https://ana199816.github.io/homework-05/)
 
-Pages include:
 
-Work Day Scheduler (index.html and framework)
-
-planner.js (main code)
-
-style.css (basic modifications on top of Bootstrap)
 
 # screenshot
 <img src="assets/img/work.day.png">
