@@ -1,28 +1,35 @@
+// get a current day
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
-
-
+// create a  time blocks
 var hour = ["9", "10", "11", "12", "13", "14", "15", "16", "17"]
 
+// fn to populate the text areas from dataStorage
+$(document).ready( () => {
+    
+    
+    // fn for button to save to local storage
+        $(".saveBtn").on("click", function(){
+            localStorage.setItem($(this).prev("textarea").attr("dataStorage"),$(this).prev("textarea").val());
+        });
+    
+        
+        $("*[dataStorage]").each(function(){
+            $(this).val(localStorage.getItem($(this).attr("dataStorage"))
+        )});
+    
+    });
 
 hour.forEach(function(time){
     var text = $("<textarea>").attr("dataStorage", time);
     var btn = $("<button>").addClass("saveBtn fas fa-save");
     var row = $("<div>").addClass("row");
     var hours = $("<div>").addClass("hour");
-  
     let any = parseInt(time);
-    
-  
 
-      row.append(hours, text, btn);
-
- 
-
-    $(".container").append(row);
-
-    
-
+    row.append(hours, text, btn);
+  // setting AM and PM
+  $(".container").append(row);
     if(any < 12){
         hours.text(time + "am");
     
@@ -38,26 +45,13 @@ hour.forEach(function(time){
 });
 
    
-
-$(document).ready( () => {
-    
-    
-
-    $(".saveBtn").on("click", function(){
-        localStorage.setItem($(this).prev("textarea").attr("dataStorage"),$(this).prev("textarea").val());
-    });
-
-    
-    $("*[dataStorage]").each(function(){
-        $(this).val(localStorage.getItem($(this).attr("dataStorage"))
-    )});
-
-});
+// variable for new date and new hour
 
     var newDate = new Date()
     var newHour = newDate.getHours();
     console.log(newHour);
 
+ // if statements to handle what is past, present, and future classes
     $("*[dataStorage").each(function(){
         if (parseInt($(this).attr("dataStorage")) === newHour){
 
@@ -73,4 +67,5 @@ $(document).ready( () => {
     });
 
     console.log(parseInt("dataStorage"));
+
     console.log(newHour);
